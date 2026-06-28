@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>TaskFlow</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <div class="app">
+
+            <!-- Боковая панель -->
+             <aside class="sidebar">
+                <div class="logo">
+                    <span class="logo-mark">✦</span>
+                    <span class="logo-text">TaskFlow</span>
+                </div>
+
+                <nav class="filters">
+                    <button class="filter-btn active" data-status="">Все задачи</button>
+                    <button class="filter-btn" data-status="todo">К выполнению</button>
+                    <button class="filter-btn" data-status="in-progress">В работе</button>
+                    <button class="filter-btn" data-status="done">Готово</button>
+                </nav>
+                
+                <div class="stats-panel">
+                    <div class="stat">
+                        <span class="stat-num" id="stat-total">-</span>
+                        <span class="stat-label">Всего</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-num" id="stat-todo">-</span>
+                        <span class="stat-label">К выполнению</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-num" id="stat-in-progress">-</span>
+                        <span class="stat-label">В работе</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-num" id="stat-done">-</span>
+                        <span class="stat-label">Готово</span>
+                    </div>
+                </div>
+             </aside>
+
+             <!-- Основное содержимое -->
+              <main class="main">
+                <header class="topbar">
+                    <h1 class="page-title" id="page-title">Все задачи</h1>
+                    <button class="btn-add" id="btn-add">+ Новая задача</button>
+                </header>
+
+                <div id="taskList" class="task-list">
+                    <div class="loading">Загрузка...</div>
+                </div>
+              </main>
+
+        </div>
+
+        <!-- Модальное окно -->
+         <div class="modal-overlay" id="modal-overlay">
+            <div class="modal" id="modal">
+                <div class="modal-header">
+                <h2 class="modal-title" id="modal-title">Новая задача</h2>
+                <button class="modal-close" id="modal-close" aria-label="Закрыть">✕</button>
+                </div>
+                <div class="modal-body">
+                    <label class="field">
+                        <span class="field-label">Название</span>
+                        <input class="field-input" id="f-title" type="text" placeholder="Что нужно сделать?" autocomplete="off" />
+                    </label>
+
+                    <label class="field">
+                        <span class="field-label">Описание</span>
+                        <textarea class="field-input field-textarea" id="f-description" placeholder="Подробности задачи..." rows="4"></textarea>
+                    </label>
+                
+                    <label class="field">
+                        <span class="field-label">Приоритет</span>
+                        <div class="priority-group" id="f-priority">
+                            <button class="prio-btn" data-value="low">Низкий</button>
+                            <button class="prio-btn" data-value="medium">Средний</button>
+                            <button class="prio-btn" data-value="high">Высокий</button>
+                        </div>
+                    </label>
+
+                    <label class="field" id="status-field" style="display:none">
+                        <span class="field-label">Статус</span>
+                        <select class="field-input" id="f-status">
+                            <option value="todo">К выполнению</option>
+                            <option value="in-progress">В работе</option>
+                            <option value="done">Готово</option>
+                        </select>
+                    </label>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn-cancel" id="btn-cancel">Отмена</button>
+                    <button class="btn-save" id="btn-save">Сохранить</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Тост -->
+         <div class="toast" id="toast"></div>
+
+        <script src="js/api.js"></script>
+        <script src="js/ui.js"></script>
+        <script src="js/app.js"></script>
+    </body>
+</html>
